@@ -1,10 +1,14 @@
 import React from 'react'
+import Nav from '../components/Nav';
 
 const About = () => {
   return (
-    <div>
-        <h1>About us page</h1>
-    </div>
+   <>
+    <Nav/>
+    
+
+    <h1></h1>
+   </>
   )
 }
 
