@@ -1,58 +1,98 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "./Nav.css";
 
-const Nav = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faMoon, faSun, faXmark } from "@fortawesome/free-solid-svg-icons";
+import AppButton from "./AppButton";
+import { useAuth } from "../contexts/AuthContexts";
 
-    const navigate = useNavigate();
 
-    const handleSignUp = ()=>{
-        navigate("/signup")
-    };
+const Nav = ({ darkMode, toggleDarkMode }) => {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const handleLogin = ()=>{
-        navigate("/login")
-    }
+
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <header style={style.header}>
-      <nav style={{display: "flex", justifyContent: 'space-around', alignItems:'center', padding: '15px'}}>
-        <div style={{display:"flex", gap:"4em", alignItems: 'center'}}>
-          
-          <Link to={"/"} style={{textDecoration:'none', color:"blue"}}>
-              <h1>AugEcommerce</h1>
-          </Link>
-          
+    <header className="navbar">
+      <div className="nav-header">
+        <Link to="/" className="logo">
+          LUMÉ
+        </Link>
+      </div>
 
-          <ul style={{display:'flex', gap:"2em"}}>
-            <li style={{listStyle:"none"}}>
-                <Link to={"/about"} style={{textDecoration:'none', color:'#222'}}>About</Link>
-            </li>
-            <li style={{listStyle:"none"}}>
-                  <Link to={"/product"} style={{textDecoration:'none', color:'#222'}}>Product</Link>
-            </li>
-            <li style={{listStyle:"none"}}>
-                  <Link to={"/create-product"} style={{textDecoration:'none', color:'#222'}}>Create product</Link>
-            </li>
-            <li style={{listStyle:"none"}}>Blog</li>
-          </ul>
-        </div>
+      <nav className={`nav-links${menuOpen ? " menu-open" : ""}`}>
+        <Link to="/" onClick={closeMenu}>Home</Link>
+        <Link to="/about" onClick={closeMenu}>About</Link>
+        <Link to="/product" onClick={closeMenu}>Shop</Link>
+        <Link to="/createproduct" onClick={closeMenu}>Create Product</Link>
 
-        <div>
-            <div></div>
-            <button onClick={handleSignUp}>singup</button>
-            <button onClick={handleLogin}>login</button>
-        </div>
+        <a href="#" onClick={closeMenu}>Blog</a>
+        <button type="button" className="mobile-theme-button" onClick={toggleDarkMode}>
+          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+          <span>Change theme</span>
+        </button>
+        {user && (
+          <button type="button" className="mobile-logout-button" onClick={() => { logout(); closeMenu(); }}>
+            Logout
+          </button>
+        )}
       </nav>
+
+      <div className="nav-buttons">
+
+        <button onClick={toggleDarkMode} className="theme-btn">
+          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+        </button>
+{/* 
+        <button className="cart-btn">
+          🛒 Cart
+        </button> */}
+
+        {user ? (
+          <div className="user-menu">
+            <button className="user-profile-button" onClick={() => navigate("/profile")}>
+              <span className="user-avatar">
+                {user.profile_image ? (
+                  <img src={user.profile_image} alt="" />
+                ) : (
+                  user.firstname?.charAt(0).toUpperCase()
+                )}
+              </span>
+              <span>Welcome, {user.firstname}</span>
+            </button>
+          </div>
+        ) : (
+          <>
+            <AppButton text="Login" textColor="blue" bgColor="white" useBorder="5px" handleClick={handleLogin} />
+            <AppButton text="Signup" bgColor="blue" textColor="white" useBorder="5px" handleClick={handleSignUp} />
+          </>
+        )}
+
+      </div>
+
+      <button
+        type="button"
+        className="menu-toggle"
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((isOpen) => !isOpen)}
+      >
+        <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} />
+      </button>
     </header>
   );
 };
-
-
-const style = {
-    header: {
-        backgroundColor: '#E8E8E8',
-        boxShadow: '0px 2px 3px 3px grey'
-    }
-}
 
 export default Nav;

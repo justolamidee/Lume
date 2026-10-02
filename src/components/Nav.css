@@ -1,0 +1,418 @@
+.navbar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 22px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f5f0;
+  border-bottom: 1px solid #e5e1da;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  text-decoration: none;
+  color: #222;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.nav-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* Nav links  */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #888;
+}
+
+.menu-toggle,
+.mobile-logout-button,
+.mobile-theme-button {
+  display: none;
+}
+
+/* Nav buttons  */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile-button,
+.logout-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.user-profile-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px 4px 4px;
+  border-radius: 24px;
+  background: transparent;
+  color: #222;
+  font-weight: 600;
+}
+
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: crimson;
+  color: white;
+  font-weight: 700;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logout-button {
+  padding: 8px 10px;
+  background: transparent;
+  color: #777;
+}
+
+.logout-button:hover {
+  color: crimson;
+}
+
+.app.dark .user-profile-button,
+.app.dark .logout-button {
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 16px 4%;
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+
+  .nav-links {
+    order: 1;
+    width: auto;
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: 14px;
+    white-space: nowrap;
+  }
+
+  .nav-buttons {
+    order: 2;
+    margin-left: auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .user-menu {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 14px 5%;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .nav-header {
+    flex-shrink: 0;
+    gap: 6px;
+  }
+
+  .logo {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
+
+  .nav-buttons {
+    gap: 4px;
+    max-width: 100%;
+    order: 1;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+  }
+
+  .menu-toggle {
+    display: flex;
+    order: 2;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #222;
+    background: transparent;
+    color: #222;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 0 0 36px;
+  }
+
+  .app.dark .menu-toggle {
+    border-color: white;
+    color: white;
+  }
+
+  .nav-links {
+    display: none;
+    order: 3;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0;
+    border-top: 1px solid #e5e1da;
+  }
+
+  .nav-links.menu-open {
+    display: flex;
+  }
+
+  .nav-links a,
+  .mobile-logout-button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 4px;
+    text-align: left;
+  }
+
+  .mobile-logout-button {
+    display: block;
+    border: 0;
+    background: transparent;
+    color: #777;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+  }
+
+  .mobile-logout-button:hover {
+    color: crimson;
+  }
+
+  .app.dark .nav-links {
+    border-top-color: #333;
+  }
+
+  .app.dark .mobile-logout-button {
+    color: white;
+  }
+
+  .theme-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .login-btn,
+  .signup-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .nav-links {
+    gap: 10px 14px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .nav-buttons > button:not(.theme-btn) {
+    min-width: 0;
+  }
+
+  .user-profile-button {
+    padding-right: 4px;
+  }
+
+  .user-profile-button > span:last-child {
+    max-width: 130px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-buttons .theme-btn {
+    display: flex;
+  }
+
+  .mobile-theme-button {
+    display: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .nav-buttons .theme-btn {
+    display: none;
+  }
+
+  .mobile-theme-button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 4px;
+    border: 0;
+    background: transparent;
+    color: #333;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    text-align: left;
+  }
+
+  .mobile-theme-button:hover {
+    color: #888;
+  }
+
+  .app.dark .mobile-theme-button {
+    color: white;
+  }
+}
+
+.login-btn,
+.signup-btn {
+  padding: 10px 18px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.login-btn {
+  background: transparent;
+  border: 1px solid #222;
+  color: #222;
+}
+
+.signup-btn {
+  background: #222;
+  border: 1px solid #222;
+  color: white;
+}
+
+.login-btn:hover {
+  background: #222;
+  color: white;
+}
+
+.signup-btn:hover {
+  background: #444;
+}
+
+/* Cart  */
+
+.cart-btn,
+.login-btn,
+.signup-btn {
+  padding: 10px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.cart-btn {
+  border: none;
+  background: transparent;
+  color: #222;
+}
+
+/* Dark and Light Mode  */
+
+.app.dark .navbar {
+  background-color: #181818;
+  border-bottom: 1px solid #333;
+}
+
+.app.dark .logo {
+  color: white;
+}
+
+.app.dark .nav-links a {
+  color: #ddd;
+}
+
+.app.dark .nav-links a:hover {
+  color: #aaa;
+}
+
+.app.dark .login-btn {
+  border-color: white;
+  color: white;
+}
+
+.app.dark .login-btn:hover {
+  background-color: white;
+  color: #222;
+}
+
+.app.dark .cart-btn {
+  color: white;
+}
+
+/* Dark Mode and Light mode Design  */
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #222;
+  border-radius: 50%;
+  background: transparent;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  background-color: #222;
+  color: white;
+  transform: rotate(15deg);
+}
+.app.dark .theme-btn {
+  border-color: white;
+  color: white;
+}
+
+.app.dark .theme-btn:hover {
+  background-color: white;
+  color: #222;
+}

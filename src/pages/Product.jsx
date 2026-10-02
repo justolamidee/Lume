@@ -1,10 +1,15 @@
 import React from 'react'
+import Nav from '../components/Nav';
+import Fetch from '../Hooks/Fetch';
 
 const Product = () => {
   return (
-    <div>
-        <h1>Product page</h1>
-    </div>
+   <>
+
+    <Fetch/>
+
+    <h1></h1>
+   </>
   )
 }
 
